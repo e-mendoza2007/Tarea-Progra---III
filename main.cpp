@@ -7,3 +7,9 @@ class Tensor {
     public:
     Tensor ( const  vector < size_t >& shape , const   vector <double >& values ) ;
 };
+
+
+int main(){
+
+    return 0;
+}
