@@ -619,10 +619,10 @@ int main() {
     Z.imprimir();
     cout <<"\n";
     cout <<"matmul\n";
-    Tensor X = matmul(E,F);
+    Tensor X = matmul(A,B);
     X.imprimir();
 
-
+cout<< "-------------------------------------Red Neuronal----------------------------\n";
     Tensor red = Tensor ::aleatorio({1000,20,20},0,100);
     Tensor red_Transformado = red.view({1000,400});
     Tensor matri = Tensor ::aleatorio({400,100},0,100);
