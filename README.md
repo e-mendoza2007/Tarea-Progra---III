@@ -14,7 +14,7 @@
 
 ## Constructores
 
-### 1.- Principal -> Este recibe un vector de dimensiones y otro de valores. El vector de dimensiones se le atribuye a dimensiones y con el otro vector almacenamos los datos en el array.
+### 1.- Principal : Este recibe un vector de dimensiones y otro de valores. El vector de dimensiones se le atribuye a dimensiones y con el otro vector almacenamos los datos en el array.
 
 ![alt text](image.png)
 
@@ -35,5 +35,21 @@
 
 ![alt text](image-4.png)
 
+### 4.- Destructor
+![alt text](image-5.png)
+
+## Metodos Estáticos
+
+## Polimorfismo Y Transformaciones
+
+## Sobrecarga de operadores
+
+## Modificación de dimensiones
+
+## Concatenación 
+
+## Funciones Amigas Permitidas
+
+## Red Neuronal
 
 
