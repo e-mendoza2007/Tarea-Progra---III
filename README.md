@@ -31,5 +31,9 @@
 
 ![alt text](image-3.png)
 
+### 3.- Constructor de movimiento y asignación
+
+![alt text](image-4.png)
+
 
 
