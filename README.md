@@ -42,6 +42,21 @@
 
 ## Polimorfismo Y Transformaciones
 
+### Para esta parte Usamos la herencia para crear las clases ReLu y Sigmoid. Es importante recalcar que esto provienene de la clase de TensorTransform, y con virtual.... = 0  obligamos a las clase hijas a usar esta función. Definimos en cada uno la función virtual, y modificamos según las condicones. Por ejemplo en ReLu, cada dato del array, se modifica comparando con el cero cual es mayor, pero en el sigmoid se utitliza una fórmula para poder cambiar cada dato de Datos.
+
+![alt text](image-6.png)
+
+### Igualmente en la clase tensor ponemos un metodo de aplicación, para hacer ReLu y Sigmoid, y tenemos que devolver el tensor transformado.
+
+![alt text](image-9.png)
+
+### Ejemplo de prueba
+
+![alt text](image-8.png)
+
+### //Es importante definir que para que la aplicacion en Tesnión funcione, debemos definir antes la clase TensroTransform
+
+
 ## Sobrecarga de operadores
 
 ## Modificación de dimensiones
@@ -50,6 +65,47 @@
 
 ## Funciones Amigas Permitidas
 
+### Ahora vamos a ver dos funciones amigas que están siendo permitidas con friend. La primera es dot, que realiza el producto punto y devuelve un Tensor con una sola dimensión, y con el uncio valor del resultado que nos salío en el producto punto de ambos tensores.
+
+![alt text](image-10.png)
+### Caso de prueba:  Estos son los tensores
+![alt text](image-11.png)
+
+### Y al aplicarle dot a ambos este es el resultado:
+
+
+![alt text](image-12.png)
+
+### La segunda función es matmul, que basicamente es una multiplicación de matrices.
+
+![alt text](image-13.png)
+
+### Vemos el caso de prueba: Con estos dos tensores ahora.
+
+![alt text](image-14.png)
+
+### Ahora vemos la dimension y los valores del nuevo tensor.
+
+
+![alt text](image-15.png)
+
+
+#### //Cabe reslatar que para cada uno se corresponde las retricciones necesarias, como la columna igual a filas en matmul, que solo tenga dos dimensiones.
+
+
 ## Red Neuronal
 
+### Ahora vamos hacer el último paso, usarermos lo que hemos planteado apra una red neuronal.
+
+### Primero Creamos un Tesnor aleatorio de dimensiones 1000x20x20.
+### Segundo Utilizamos view para transformarlo a 1000x400.
+### Tercero Multiplicamos con una matriz de dimensiones 400x100, para eso creamos una con aleatorio, y para la multiplicación usamos Matmul.
+### Cuarto sumamos con un tensor de domensiones 1x100
+### Quinto Aplicamos ReLu para ver si hay valores negativos.
+### Sexto Multiplicamos por una matriz 100x10
+### Septimo Sumamos con una matriz 1x10
+### Finalmente palicamos sigmoid.
+
+
+![alt text](image-16.png)
 

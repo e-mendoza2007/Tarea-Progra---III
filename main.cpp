@@ -5,7 +5,13 @@
 #include <cmath>
 using namespace std;
 
-class TensorTransform;
+class Tensor;
+
+class TensorTransform {
+public :
+virtual Tensor apply ( const Tensor & t ) const = 0;
+    virtual ~ TensorTransform () = default ;
+};
 
 class Tensor {
 private:
@@ -378,16 +384,14 @@ public:
     int get_tamanio() const { return tamanio_total; }
 
 //--------------------------------------parte 5---------------------
-    Tensor apply ( const TensorTransform & transform ) const ;
+    Tensor apply ( const TensorTransform & transform ) const {
+        return transform.apply(*this);
+    };
 };
 
 
 //----------------------------------------parte 5---------------------------
-class TensorTransform {
-public :
-virtual Tensor apply ( const Tensor & t ) const = 0;
-    virtual ~ TensorTransform () = default ;
-};
+
 
 class ReLu : public TensorTransform {
 
@@ -464,7 +468,7 @@ Tensor matmul(const Tensor& t1, const Tensor& t2) {
         }
     }
 
-    return Tensor({dim},valores_nuevo);
+    return Tensor({t1.dimensiones[0], t2.dimensiones[1]}, valores_nuevo);
 
 }
 
@@ -472,8 +476,7 @@ Tensor matmul(const Tensor& t1, const Tensor& t2) {
 
 //------------------------------------------------------------------------------------------------------------------
 int main() {
- /*  
-    cout << "Pruebas de las preguntas: "
+    srand(time(0));
 
     cout << "========== PARTE 3, 6, 7 y 8 ==========\n" << endl;
 
@@ -597,6 +600,18 @@ int main() {
     Lm.imprimir();
     cout <<"Lc\n";
     Lc.imprimir();
+    cout<<"-----------------------------------------------------Polimorfismo-----------------------\n";
+
+    ReLu prueba;
+    cout<<"E"<<endl;
+    E.imprimir();
+    Tensor p_relu = E.apply(prueba);
+    cout<<"Prueba de relu"<<endl;
+    p_relu.imprimir();
+    Sigmoid prueba_2;
+    cout<<"Utilizamos el tensor de relu para sigmoid"<<endl;
+    Tensor p_sigmoid = p_relu.apply(prueba_2);
+    p_sigmoid.imprimir();
 
     cout << "-------------------------------Funciones amigas dot & matmul---------------------------------------------------\n";
     cout <<"dot\n";
@@ -607,19 +622,17 @@ int main() {
     Tensor X = matmul(E,F);
     X.imprimir();
 
-    cout<<"-------------------------------------------------------------------------------------------"
-*/
 
-    Tensor red = Tensor ::aleatorio({100,20,20},0,100);
+    Tensor red = Tensor ::aleatorio({1000,20,20},0,100);
     Tensor red_Transformado = red.view({1000,400});
     Tensor matri = Tensor ::aleatorio({400,100},0,100);
-    Tensor red_mul = red_Transformado*matri;
+    Tensor red_mul = matmul(red_Transformado,matri);
     Tensor suma = Tensor ::aleatorio({1,100},0,100);
     Tensor red_suma = red_mul + suma;
     ReLu relu;
     Tensor re_lu = red_suma.apply(relu);
     Tensor matri2 = Tensor ::aleatorio({100,10},0,100);
-    Tensor multi2 = re_lu * matri2;
+    Tensor multi2 = matmul(re_lu , matri2);
     Tensor suma2 = Tensor::aleatorio({1,10},0,100);
     Tensor red_sum2 = multi2  + suma2;
     Sigmoid sigmoid_;
