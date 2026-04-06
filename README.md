@@ -39,6 +39,10 @@
 ![alt text](image-5.png)
 
 ## Metodos Estáticos
+**`ceros(dimensiones)`**: Crea un tensor con todas las posiciones inicializadas en 0.0
+- **`unos(dimensiones)`**: Crea un tensor con todas las posiciones inicializadas en 1.0
+- **`aleatorio(dimensiones, minimo, maximo)`**: Crea un tensor con valores aleatorios distribuidos uniformemente en el rango [minimo, maximo)
+- **`rango(inicio, fin, paso=1.0)`**: Crea un tensor unidimensional con valores secuenciales desde `inicio` hasta `fin` (no inclusivo)
 
 ## Polimorfismo Y Transformaciones
 
@@ -58,6 +62,7 @@
 
 
 ## Sobrecarga de operadores
+
 
 ## Modificación de dimensiones
 
