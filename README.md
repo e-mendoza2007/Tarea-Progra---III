@@ -98,7 +98,8 @@ Función externa que permite multiplicación con el escalar a la izquierda.
 - Se valida compatibilidad de dimensiones antes de operar
 
 #### Ejemplo de uso:
-```cpp
+
+
 Tensor A({2, 2}, {1, 2, 3, 4});
 Tensor B({2, 2}, {5, 6, 7, 8});
 
@@ -136,7 +137,27 @@ Agrega una dimensión de tamaño 1 en la posición especificada, **sin modificar
 - Recalculan correctamente la forma lógica
 - Garantizan que las dimensiones no excedan 3
 
+
+
 ## Concatenación 
+
+
+### Ahora creamos como metodo estatico una funciópn concat. Esto nos permitirá concatenar dos VTensores creando un nuevo Tensor. Para ello vamos a recibir un vector de dos Tensores, y también un int, que nos dirá como se ampliará los Tensores, si de forma vertical (0) o de forma horizontal(1)
+
+### Para eso Validamos si Hay Tensores en el vector de Tensores, Verificamos que la posicon en que vamos a ampliar también este en el rango de las dimensiones, Y que tengan el mismo numero de dimenisones, Y las demas dimeniones excepto del valor recibido, sean iguales.
+
+
+![alt text](image-25.png)
+
+Luego calculamos el nuevo tamaño del vector, y creamos el vector de los nuevos datos. Luego calculamos el tamaño de cada bloque despues de el ya pedido. Finalmente ya copiamos todos los datos de los vectores ampliando el Tensor, o mejor dicho añadiendo a al cola como uniendolos.Recorremos todos los Tensores, luego vemos la cantidad de elementos que vamos a copiar, y con eso recorremos para copiar elemto por elemento, Luego añadimos o vamos actualizando la posicion del vector de datos para no cambiar ningun dato. Finalmente creamos el Tensor con la nueva forma de dimensiones y los nuevos datos, y lo retornamos.
+
+![alt text](image-26.png)
+
+
+###Ejemplos de prueba:
+
+![alt text](image-27.png)
+
 
 ## Funciones Amigas Permitidas
 
@@ -183,4 +204,8 @@ Agrega una dimensión de tamaño 1 en la posición especificada, **sin modificar
 
 
 ![alt text](image-16.png)
+
+# Dato extra: Creamos una funcion para imprimir, nos da las dimensiones y los datos...
+
+![alt text](image-28.png)
 
