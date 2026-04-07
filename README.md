@@ -44,6 +44,10 @@
 - **`aleatorio(dimensiones, minimo, maximo)`**: Crea un tensor con valores aleatorios distribuidos uniformemente en el rango [minimo, maximo)
 - **`rango(inicio, fin, paso=1.0)`**: Crea un tensor unidimensional con valores secuenciales desde `inicio` hasta `fin` (no inclusivo)
 
+![alt text](image-17.png)
+
+![alt text](image-18.png)
+
 ## Polimorfismo Y Transformaciones
 
 ### Para esta parte Usamos la herencia para crear las clases ReLu y Sigmoid. Es importante recalcar que esto provienene de la clase de TensorTransform, y con virtual.... = 0  obligamos a las clase hijas a usar esta función. Definimos en cada uno la función virtual, y modificamos según las condicones. Por ejemplo en ReLu, cada dato del array, se modifica comparando con el cero cual es mayor, pero en el sigmoid se utitliza una fórmula para poder cambiar cada dato de Datos.
@@ -63,8 +67,74 @@
 
 ## Sobrecarga de operadores
 
+Se implementaron los siguientes operadores con validación de dimensiones:
+
+#### Operador `+` (tensor + tensor)
+Suma elemento a elemento. Lanza error si las dimensiones no son compatibles.
+
+#### Operador `-` (tensor - tensor)
+Resta elemento a elemento. Lanza error si las dimensiones no son compatibles.
+
+#### Operador `*` (tensor * tensor)
+Multiplicación elemento a elemento (producto de Hadamard). Lanza error si las dimensiones no son compatibles.
+
+#### Operador `*` (tensor * escalar)
+Multiplica todos los elementos del tensor por un escalar.
+
+#### Operador `*` (escalar * tensor)
+Función externa que permite multiplicación con el escalar a la izquierda.
+
+![alt text](image-19.png)
+
+![alt text](image-20.png)
+
+![alt text](image-21.png)
+
+![alt text](image-22.png)
+
+#### Características:
+- Los operandos no se modifican (operadores const)
+- Los operadores devuelven nuevos tensores
+- Se valida compatibilidad de dimensiones antes de operar
+
+#### Ejemplo de uso:
+```cpp
+Tensor A({2, 2}, {1, 2, 3, 4});
+Tensor B({2, 2}, {5, 6, 7, 8});
+
+Tensor C = A + B;      // Suma: [6, 8, 10, 12]
+Tensor D = A - B;      // Resta: [-4, -4, -4, -4]
+Tensor E = A * B;      // Producto elemento a elemento: [5, 12, 21, 32]
+Tensor F = A * 2.0;    // Escalar derecho: [2, 4, 6, 8]
+Tensor G = 3.0 * A;    // Escalar izquierdo: [3, 6, 9, 12]
+
 
 ## Modificación de dimensiones
+
+#### Método `view(nuevas_dimensiones)`
+Reinterpreta la forma de un tensor **sin copiar los datos subyacentes**.
+
+**Requisitos:**
+- El número total de elementos debe mantenerse constante
+- El número de dimensiones no puede exceder tres
+- El tensor original permanece válido
+
+![alt text](image-23.png)
+
+#### Método `unsqueeze(posicion)`
+Agrega una dimensión de tamaño 1 en la posición especificada, **sin modificar los datos subyacentes**.
+
+**Usos:**
+- Preparar tensores para operaciones matriciales
+- Adaptar dimensiones para concatenación o suma con bias
+- Simular comportamiento de expand_dims de NumPy
+
+![alt text](image-24.png)
+
+#### Características importantes:
+- No copian los datos (crean vistas)
+- Recalculan correctamente la forma lógica
+- Garantizan que las dimensiones no excedan 3
 
 ## Concatenación 
 
